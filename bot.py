@@ -1,4 +1,4 @@
-import requests
+import cloudscraper
 import time
 import threading
 from bs4 import BeautifulSoup
@@ -16,10 +16,10 @@ class Autoclaim(threading.Thread):
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36',
             'Content-Type': 'application/x-www-form-urlencoded'
         }    
-        #scraper = cloudscraper.CloudScraper()
+        scraper = cloudscraper.CloudScraper()
         while True:
             try:
-                conn_ = requests.post(self.site, headers=headers)
+                conn_ = scraper.post(self.site, headers=headers)
             except Exception as e:
                 print(e)
             soup = BeautifulSoup(conn_.text, "html.parser")
